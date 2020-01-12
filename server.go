@@ -29,7 +29,7 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 	if wsConn, err = upgrade.Upgrade(w, r, nil); err != nil {
 		return
 	}
-
+	                                    
 	go func() {
 		var (
 			err error
@@ -45,7 +45,8 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 	if conn, err = impl.InitConnection(wsConn); err != nil {
 		goto ERR
 	}
-
+	
+	//读到啥，就返回啥
 	for {
 		if data, err = conn.ReadMessage(); err != nil {
 			goto ERR
